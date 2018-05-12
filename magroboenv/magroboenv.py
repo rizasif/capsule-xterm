@@ -219,8 +219,10 @@ class MagRoboEnv(gym.Env):
                 return 1
             else:
                 for i in range(myconfig.Config.REWARD_GRADIENT):
+                    sum_reward = 0
                     if self.curr_moment_dist < self.reward_metrix[i]:
-                        return i*0.1
+                        sum_reward += i*0.1
+                return sum_reward
         else:
             #TODO
             pass
