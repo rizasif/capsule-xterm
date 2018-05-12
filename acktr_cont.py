@@ -84,6 +84,7 @@ def learn(env, policy, vf, gamma, lam, timesteps_per_batch, num_timesteps,
     i = 0
     timesteps_so_far = 0
     while True:
+        print "Timestep Number: {}/{}".format(timesteps_so_far, num_timesteps)
         if timesteps_so_far > num_timesteps:
             break
         logger.log("********** Iteration %i ************"%i)
