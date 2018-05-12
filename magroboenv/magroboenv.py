@@ -215,7 +215,7 @@ class MagRoboEnv(gym.Env):
         elif myconfig.Config.TRAINING_MODE == "MOMENT":
             if self.curr_moment_dist == 0.0:
                 return 1
-            elif self.curr_moment_dist < 0.01:
+            elif self.curr_moment_dist < 1:
                 return 1
             else:
                 for i in range(myconfig.Config.REWARD_GRADIENT):

@@ -32,27 +32,27 @@ class Config:
     Z_MAX_MAG_MOMENT_DEVIATE = 0.0
 
     #Probe dimention in mm
-    PROBE_DIM = 5
+    PROBE_DIM = 10
     
     #activate X/Y/Z coordinates OR X/Y/Z M. Moment OR both
     # COORD -> coordinates
     # MOMENT -> M. Moments
     # BOTH -> Both
     # Default -> Both
-    TRAINING_MODE = "COORD"
+    TRAINING_MODE = "MOMENT"
     
     #Reward gradient
     REWARD_GRADIENT = 10
     
     # in amperes 
-    MAX_CURRENT = 4.0
-    MIN_CURRENT = -4.0
+    MAX_CURRENT = 2.5
+    MIN_CURRENT = -2.5
     CURR_DEVIATE_ACTIVE = True
-    MAX_CURR_DEVIATE = 1
-    MIN_CURR_DEVIATE = -1
+    MAX_CURR_DEVIATE = 0.35
+    MIN_CURR_DEVIATE = -0.35
 
     #Change Currents time per second
-    RUN_TIMES_PER_SEC = 10
+    RUN_TIMES_PER_SEC = 3
 
     #Timestep Limit for episode
     TIMESTEP_LIMIT = 100

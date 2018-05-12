@@ -1,13 +1,3 @@
 Logging to ./log
-Model loaded from file ./training/train_save.ckpt
+Model loaded from file ./ori_train/train_ori.ckpt
 ********** Iteration 0 ************
-kl just right!
-----------------------------
-| EVAfter   | -0.00139     |
-| EVBefore  | 0.124        |
-| EpLenMean | 91.9         |
-| EpRewMean | -91.8        |
-| EpRewSEM  | 3.95         |
-| KL        | 0.0022482886 |
-----------------------------
-Model saved to file ./training/train_save.ckpt
