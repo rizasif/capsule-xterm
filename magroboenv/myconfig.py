@@ -48,8 +48,8 @@ class Config:
     MAX_CURRENT = 2.5
     MIN_CURRENT = -2.5
     CURR_DEVIATE_ACTIVE = True
-    MAX_CURR_DEVIATE = 0.35
-    MIN_CURR_DEVIATE = -0.35
+    MAX_CURR_DEVIATE = 1
+    MIN_CURR_DEVIATE = -1
 
     #Change Currents time per second
     RUN_TIMES_PER_SEC = 3
