@@ -47,7 +47,7 @@ class Config:
     # in amperes 
     MAX_CURRENT = 2.5
     MIN_CURRENT = -2.5
-    CURR_DEVIATE_ACTIVE = False #True
+    CURR_DEVIATE_ACTIVE = True
     MAX_CURR_DEVIATE = 1
     MIN_CURR_DEVIATE = -1
 
