@@ -2,8 +2,8 @@ from NatNetClient import NatNetClient
 from quarternion import Quaternion
 import logging
 
-log = logging.getLogger("optitrack-logger")
-log.info("Starting Logger")
+logging.basicConfig(filename="optitrack_log", level=logging.DEBUG)
+logging.info("Starting Logger")
 
 data = [0.0 for _ in range(6)]
 debug = False
@@ -19,11 +19,11 @@ def receiveRigidBodyFrame( id, position, rotation ):
     if debug:
         print( "Received frame for rigid body", id )
         print( "Position: ", position )
-        log.info( "Position: {}".format(position))
+        logging.info( "Position: {}".format(position))
         # print( "Rotation: ", rotation)
         quart = Quaternion(rotation[0], rotation[1], rotation[2], rotation[3])
         print( "Rotation: ", quart.euler)
-        log.info( "Rotation: {}".format(quart.euler))
+        logging.info( "Rotation: {}".format(quart.euler))
     data[0] = position[0]
     data[1] = position[1]
     data[2] = position[2]
