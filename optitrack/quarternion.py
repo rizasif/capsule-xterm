@@ -154,8 +154,8 @@ class Quaternion(object):
     @property
     def euler(self):
         """ Returns a :class:`Vector` of the euler angles (roll, pitch and yaw). """
-
-        return (self.roll, self.pitch, self.yaw)
+        const = 180.0/math.pi
+        return (self.roll*const , self.pitch*const, self.yaw*const)
 
     rpy = euler
 
