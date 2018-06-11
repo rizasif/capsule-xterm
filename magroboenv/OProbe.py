@@ -1,7 +1,7 @@
 import math
 import random
 import numpy as np
-import win32com.client  # Python ActiveX Client
+# import win32com.client  # Python ActiveX Client
 import logging
 import magroboenv.myconfig as myconfig
 

@@ -1,9 +1,10 @@
 import math
 import random
 import numpy as np
-import win32com.client  # Python ActiveX Client
 import logging
 import magroboenv.myconfig as myconfig
+import optitrack.server as OptiSerer
+import win32com.client  # Python ActiveX Client
 
 ##########global class and function definition#############
 
@@ -122,12 +123,12 @@ class Current():
     def __str__(self):
         return "({}, {})".format(self.name, self.amp)
 
-    def uniform_current(self, curr):
-        while True:
-            dev = random.uniform(myconfig.Config.MAX_DEVIATE, myconfig.Config.MIN_DEVIATE)
-            dev = curr + dev
-            if dev < myconfig.Config.MAX_CURRENT and dev > myconfig.Config.MIN_CURRENT:
-                return dev
+    # def uniform_current(self, curr):
+    #     while True:
+    #         dev = random.uniform(myconfig.Config.MAX_DEVIATE, myconfig.Config.MIN_DEVIATE)
+    #         dev = curr + dev
+    #         if dev < myconfig.Config.MAX_CURRENT and dev > myconfig.Config.MIN_CURRENT:
+    #             return dev
             
     def generate_random(self):
         for i in range(9):
@@ -265,12 +266,10 @@ class MProbe():
         ori = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         
         if self.name == 'Slave':
-            for i in range(6):
-                ori[i] = VI.getcontrolvalue(myconfig.Config.SLAVE_LABEL[i])
+            ori = OptiSerer.data
             
         elif self.name == 'Master':
-            for i in range(6):
-                ori[i] = VI.getcontrolvalue(myconfig.Config.MASTER_LABEL[i])
+            ori = OptiSerer.data
 
         self.set_orientation(ori[0], ori[1], ori[2], ori[3], ori[4], ori[5])
 
@@ -313,6 +312,9 @@ class MProbe():
 #create a labview client
 LabVIEW = win32com.client.Dispatch("Labview.Application")
 VI = LabVIEW.getvireference(myconfig.Config.VI_PATH)
+
+OptiSerer.StartServer()
+
 master=MProbe('Master')
 slave=MProbe('Slave')
 goal=MProbe('Goal')
