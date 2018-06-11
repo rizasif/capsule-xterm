@@ -1,4 +1,5 @@
 from NatNetClient import NatNetClient
+from quarternion import Quaternion
 
 data = [0.0 for _ in range(6)]
 debug = False
@@ -14,7 +15,9 @@ def receiveRigidBodyFrame( id, position, rotation ):
     if debug:
         print( "Received frame for rigid body", id )
         print( "Position: ", position )
-        print( "Rotation: ", rotation)
+        # print( "Rotation: ", rotation)
+        quart = Quaternion(rotation[0], rotation[1], rotation[2], rotation[3])
+        print( "Rotation: ", quart.euler)
     data[0] = position[0]
     data[1] = position[1]
     data[2] = position[2]
