@@ -8,7 +8,7 @@ import logging
 from datetime import datetime
 
 import magroboenv.myconfig as myconfig
-import magroboenv.MProbe as MProbe
+import magroboenv.OptiProbe as MProbe
 
 def square(x):
     return x*x
