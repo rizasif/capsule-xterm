@@ -1,5 +1,5 @@
-from NatNetClient import NatNetClient
-from quarternion import Quaternion
+from optitrack.NatNetClient import NatNetClient
+from optitrack.quarternion import Quaternion
 import logging
 
 logging.basicConfig(filename="optitrack_log", level=logging.DEBUG)
