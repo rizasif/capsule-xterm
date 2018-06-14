@@ -91,6 +91,10 @@ class MagneticMoment():
     def find_distance(self, MagneticMoment):
         sum = square(self.mx - MagneticMoment.mx) + square(self.my - MagneticMoment.my) + square(self.mz - MagneticMoment.mz)
         return math.sqrt(sum)
+
+    def find_distance_xyz(self, x,y,z):
+        sum = square(self.mx - x) + square(self.my - y) + square(self.mz - z)
+        return math.sqrt(sum)
     
     def set_random_xyz(self):
         self.mx = random.uniform(myconfig.Config.X_MAX_MAG_MOMENT, myconfig.Config.X_MIN_MAG_MOMENT)
@@ -307,6 +311,10 @@ class MProbe():
 
     def find_moment_distance(self, MProbe):
         dist = self.mmoment.find_distance(MProbe.mmoment)
+        return dist
+
+    def find_moment_distance_xyz(self, x,y,z):
+        dist = self.mmoment.find_distance_xyz(x,y,z)
         return dist
 
 
