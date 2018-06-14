@@ -214,7 +214,7 @@ class MagRoboEnv(gym.Env):
                     if self.curr_dist < self.reward_metrix[i]:
                         return i*0.1
         elif myconfig.Config.TRAINING_MODE == "MOMENT":
-            goal_dist = MProbe.goal.find_moment_distance(0.0,0.0,0.0)
+            goal_dist = MProbe.goal.find_moment_distance_xyz(0.0,0.0,0.0)
             percentage = self.curr_moment_dist*100/goal_dist
             print("Eucledian Distance = {}, Error={}%".format(self.curr_moment_dist, percentage ))
 
