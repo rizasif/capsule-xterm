@@ -197,13 +197,14 @@ class MagRoboEnv(gym.Env):
 
         self.curr_dist = MProbe.slave.find_distance(MProbe.goal)
         self.curr_moment_dist = MProbe.slave.find_moment_distance(MProbe.goal)
-        print("distance:{} {}".format(self.curr_dist, self.curr_moment_dist))
+        print("eucledian distance: {} {}".format(self.curr_dist, self.curr_moment_dist))
         #print("goal: ({}, {}, {})".format(MProbe.goal.coordinate.x, MProbe.goal.coordinate.y, MProbe.goal.coordinate.z))
         logging.debug("distance:{} {}".format(self.curr_dist, self.curr_moment_dist))
         
         
         """ Reward is given for XYZ. """
         if myconfig.Config.TRAINING_MODE == "COORD":
+            print("Eucledian Distance = {}, Error={}%".format(self.curr_dist, (1.0 - self.curr_dist)/100.0 ))
             if self.curr_dist == 0.0:
                 return 1
             elif self.curr_dist < myconfig.Config.PROBE_DIM:
@@ -213,10 +214,10 @@ class MagRoboEnv(gym.Env):
                     if self.curr_dist < self.reward_metrix[i]:
                         return i*0.1
         elif myconfig.Config.TRAINING_MODE == "MOMENT":
-            #if self.curr_moment_dist == 0.0:
-            #    return 1
+            print("Eucledian Distance = {}, Error={}%".format(self.curr_moment_dist, abs(1.0 - self.curr_moment_dist)/100.0 ))
+
             if self.curr_moment_dist < 1:
-                print ("Current Moment Dist: %d" % (self.curr_moment_dist))
+                print ("Current Moment Dist: {}".format(self.curr_moment_dist))
                 return 1
             else:
                 for i in range(myconfig.Config.REWARD_GRADIENT): #=10
