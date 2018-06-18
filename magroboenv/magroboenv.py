@@ -136,6 +136,7 @@ class MagRoboEnv(gym.Env):
                 return
 
         #change the current
+        #print("Taking actions: ", str(action))
         if myconfig.Config.CURR_DEVIATE_ACTIVE == True:
             MProbe.desired_current.set_all_sys_curr_deviate(action)
         else:

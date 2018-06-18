@@ -315,6 +315,10 @@ class MProbe():
     def find_moment_distance_xyz(self, x,y,z):
         dist = self.mmoment.find_distance_xyz(x,y,z)
         return dist
+		
+    def find_last_moment_distance_xyz(self, x,y,z):
+        dist = self.last_mmoment.find_distance_xyz(x,y,z)
+        return dist
 
 
 #create a labview client
