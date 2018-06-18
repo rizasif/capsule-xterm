@@ -221,15 +221,20 @@ class MagRoboEnv(gym.Env):
             percentage = abs(abs(goal_dist-slave_dist)*100)/abs(goal_dist-last_dist)
             print("Eucledian Distance = {}, Error={}%".format(self.curr_moment_dist, percentage ))
 
-            if self.curr_moment_dist < 1:
-                print ("Current Moment Dist: {}".format(self.curr_moment_dist))
-                return 1
+            if percentage > 100:
+                return 0
             else:
-                for i in range(myconfig.Config.REWARD_GRADIENT): #=10
-                    sum_reward = 0
-                    if self.curr_moment_dist < self.reward_metrix[i]:
-                        sum_reward += i*10
-                return sum_reward
+                return (1.0 - percentage/100)
+
+            # if self.curr_moment_dist < 1:
+            #     print ("Current Moment Dist: {}".format(self.curr_moment_dist))
+            #     return 1
+            # else:
+            #     for i in range(myconfig.Config.REWARD_GRADIENT): #=10
+            #         sum_reward = 0
+            #         if self.curr_moment_dist < self.reward_metrix[i]:
+            #             sum_reward += i*10
+            #     return sum_reward
         else:
             #TODO
             pass
