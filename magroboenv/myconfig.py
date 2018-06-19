@@ -16,7 +16,7 @@ class Config:
     Z_MAX_VAL = 250.0
     Z_MIN_VAL = -250.0
 
-    X_MAX_DEVIATE = 50.0
+    X_MAX_DEVIATE = 20.0
     Y_MAX_DEVIATE = 0.0
     Z_MAX_DEVIATE = 0.0    
 
@@ -27,12 +27,12 @@ class Config:
     Z_MAX_MAG_MOMENT = 7.0
     Z_MIN_MAG_MOMENT = -7.0
 
-    X_MAX_MAG_MOMENT_DEVIATE = 2.0
+    X_MAX_MAG_MOMENT_DEVIATE = 3.0
     Y_MAX_MAG_MOMENT_DEVIATE = 0.0
     Z_MAX_MAG_MOMENT_DEVIATE = 0.0
 
     #Probe dimention in mm
-    PROBE_DIM = 10
+    PROBE_DIM = 1
     
     #activate X/Y/Z coordinates OR X/Y/Z M. Moment OR both
     # COORD -> coordinates
@@ -45,14 +45,14 @@ class Config:
     REWARD_GRADIENT = 10
     
     # in amperes 
-    MAX_CURRENT = 2.5
-    MIN_CURRENT = -2.5
+    MAX_CURRENT = 3.0
+    MIN_CURRENT = -3.0
     CURR_DEVIATE_ACTIVE = True
-    MAX_CURR_DEVIATE = 0.7
-    MIN_CURR_DEVIATE = -0.7
+    MAX_CURR_DEVIATE = 1.0
+    MIN_CURR_DEVIATE = -1.0
 
     #Change Currents time per second
-    RUN_TIMES_PER_SEC = 3
+    RUN_TIMES_PER_SEC = 1
 
     #Timestep Limit for episode
     TIMESTEP_LIMIT = 100

@@ -6,7 +6,8 @@ logging.basicConfig(filename="optitrack_log", level=logging.DEBUG)
 logging.info("Starting Logger")
 
 data = [0.0 for _ in range(6)]
-debug = False
+
+debug =False
 
 # This is a callback function that gets connected to the NatNet client and called once per mocap frame.
 def receiveNewFrame( frameNumber, markerSetCount, unlabeledMarkersCount, rigidBodyCount, skeletonCount,
