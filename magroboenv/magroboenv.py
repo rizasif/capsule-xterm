@@ -114,14 +114,22 @@ class MagRoboEnv(gym.Env):
             else:
                 done = False
         elif myconfig.Config.TRAINING_MODE == "MOMENT":
-            if self.curr_moment_dist >= 1.5*self.init_moment_dist and self.count_ts >= myconfig.Config.RESET_STEP_COUNT:
+            if self.percentage_error > 200 and self.count_ts >= myconfig.Config.RESET_STEP_COUNT:
                 print(" Reset Reward:{}, TS={}".format(reward, self.count_ts))
                 done = True
-            elif self.curr_moment_dist < 0.01:
+            elif self.percentage_error < 5:
                 print(" Reset Goal Reward:{}, TS={}".format(reward, self.count_ts))
                 done = True
             else:
                 done = False
+            # if self.curr_moment_dist >= 1.5*self.init_moment_dist and self.count_ts >= myconfig.Config.RESET_STEP_COUNT:
+            #     print(" Reset Reward:{}, TS={}".format(reward, self.count_ts))
+            #     done = True
+            # elif self.curr_moment_dist < 0.01:
+            #     print(" Reset Goal Reward:{}, TS={}".format(reward, self.count_ts))
+            #     done = True
+            # else:
+            #     done = False
 
         
         info = {}
@@ -218,13 +226,13 @@ class MagRoboEnv(gym.Env):
             goal_dist = MProbe.goal.find_moment_distance_xyz(0.0,0.0,0.0)
             slave_dist = MProbe.slave.find_moment_distance_xyz(0.0,0.0,0.0)
             last_dist = MProbe.slave.find_last_moment_distance_xyz(0.0,0.0,0.0)
-            percentage = abs(abs(goal_dist-slave_dist)*100)/abs(goal_dist-last_dist)
-            print("Eucledian Distance = {}, Error={}%".format(self.curr_moment_dist, percentage ))
+            self.percentage_error = abs(abs(goal_dist-slave_dist)*100)/abs(goal_dist-last_dist)
+            print("Eucledian Distance = {}, Error={}%".format(self.curr_moment_dist, self.percentage_error ))
 
-            if percentage > 100:
+            if self.percentage_error > 100:
                 return 0
             else:
-                return (1.0 - percentage/100)
+                return (1.0 - self.percentage_error/100)
 
             # if self.curr_moment_dist < 1:
             #     print ("Current Moment Dist: {}".format(self.curr_moment_dist))
