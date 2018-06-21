@@ -105,9 +105,9 @@ def learn(env, policy, vf, gamma, lam, timesteps_per_batch, num_timesteps,
             paths.append(path)
             n = pathlength(path)
             timesteps_this_batch += n
-            timesteps_so_far += n
             if timesteps_this_batch > timesteps_per_batch:
                 break
+        timesteps_so_far += 1
 
         # Estimate advantage function
         vtargs = []
