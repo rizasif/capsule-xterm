@@ -11,6 +11,21 @@ import win32com.client  # Python ActiveX Client
 def square(x):
     return x*x
 
+# calculate and return the distance unit2 
+# needs to move to reach unit1
+def angular_distance(unit1, unit2):
+    phi = abs(unit2-unit1) % 360
+    sign = 1
+    # used to calculate sign
+    if not ((unit1-unit2 >= 0 and unit1-unit2 <= 180) or (
+            unit1-unit2 <= -180 and unit1-unit2 >= -360)):
+        sign = -1
+    if phi > 180:
+        result = 360-phi
+    else:
+        result = phi
+    return result*sign
+
 #class representing the coordinates
 class Coordinate():
     
@@ -90,11 +105,13 @@ class MagneticMoment():
         return "({}, {}, {})".format(self.mx, self.my, self.mz)
 
     def find_distance(self, MagneticMoment):
-        sum = square(self.mx - MagneticMoment.mx) + square(self.my - MagneticMoment.my) + square(self.mz - MagneticMoment.mz)
-        return math.sqrt(sum)
+        # sum = square(self.mx - MagneticMoment.mx) + square(self.my - MagneticMoment.my) + square(self.mz - MagneticMoment.mz)
+        # return math.sqrt(sum)
+        return self.find_distance_xyz(MagneticMoment.mx, MagneticMoment.my, MagneticMoment.mz)
 
-    def find_distance_xyz(self, x,y,z):
-        sum = square(self.mx - x) + square(self.my - y) + square(self.mz - z)
+    def find_distance_xyz(self,x,y,z):
+        # sum = square(self.mx - x) + square(self.my - y) + square(self.mz - z)
+        sum = square(angular_distance(self.mx, x)) + square(angular_distance(self.my, y)) + square(angular_distance(self.mz, z))
         return math.sqrt(sum)
     
     def set_random_xyz(self):
@@ -315,10 +332,17 @@ class MProbe():
     def find_moment_distance_xyz(self, x,y,z):
         dist = self.mmoment.find_distance_xyz(x,y,z)
         return dist
-		
+
+    def find_last_moment_distance(self, MProbe):
+        dist = self.last_mmoment.find_distance(MProbe)
+        return dist
+
     def find_last_moment_distance_xyz(self, x,y,z):
         dist = self.last_mmoment.find_distance_xyz(x,y,z)
         return dist
+
+    def get_last_moment(self):
+        return self.last_mmoment
 
 
 #create a labview client
