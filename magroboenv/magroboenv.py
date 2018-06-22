@@ -227,7 +227,9 @@ class MagRoboEnv(gym.Env):
             # slave_dist = MProbe.slave.find_moment_distance_xyz(0.0,0.0,0.0)
             # last_dist = MProbe.slave.find_last_moment_distance_xyz(0.0,0.0,0.0)
             # self.percentage_error = abs(abs(goal_dist-slave_dist)*100)/abs(goal_dist-last_dist)
-            self.percentage_error = 100*MProbe.goal.find_moment_distance(MProbe.slave)/MProbe.goal.find_moment_distance(MProbe.slave.get_last_moment())
+            num = MProbe.goal.find_moment_distance(MProbe.slave)
+            dnum = MProbe.goal.find_moment_distance(MProbe.slave.get_last_moment())
+            self.percentage_error = 100.0*num/dnum
             print("Eucledian Distance = {}, Error={}%".format(self.curr_moment_dist, self.percentage_error ))
 
             if self.percentage_error > 100:
